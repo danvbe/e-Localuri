@@ -1,5 +1,5 @@
 {
-    "hash": "bcba7c37fc28a1f3c6c36802cac12444",
+    "hash": "a046050e24dcf2d5f207f9d2b6a33a11",
     "packages": [
         {
             "name": "doctrine/common",
@@ -965,6 +965,43 @@
             ]
         },
         {
+            "name": "leafo/lessphp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/leafo/lessphp",
+                "reference": "da15f54506ce5023eaeb9ad9cae83470ffe018a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/leafo/lessphp/archive/da15f54506ce5023eaeb9ad9cae83470ffe018a1.zip",
+                "reference": "da15f54506ce5023eaeb9ad9cae83470ffe018a1",
+                "shasum": ""
+            },
+            "time": "2012-11-03 17:50:34",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "lessc.inc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "lessphp is a compiler for LESS written in PHP.",
+            "homepage": "http://leafo.net/lessphp/"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.2.1",
             "source": {
@@ -1577,6 +1614,17 @@
             "keywords": [
                 "templating"
             ]
+        },
+        {
+            "name": "twitter/bootstrap",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twitter/bootstrap",
+                "reference": "v2.1.0"
+            },
+            "type": "library",
+            "installation-source": "source"
         }
     ],
     "packages-dev": null,
@@ -1590,6 +1638,7 @@
         "doctrine/migrations": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20
+        "kriswallsmith/assetic": 20,
+        "leafo/lessphp": 20
     }
 }
