@@ -1,0 +1,7 @@
+parameters:
+#    localuri_user.example.class: Localuri\UserBundle\Example
+
+services:
+#    localuri_user.example:
+#        class: %localuri_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
