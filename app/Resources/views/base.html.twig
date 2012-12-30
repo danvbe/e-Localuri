@@ -6,54 +6,76 @@
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        {% block stylesheets %}
-            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
-            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
-            <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
-        {% endblock %}
+        {% stylesheets '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+    <!-- Navbar
+    ================================================== -->
+    {% block navigation %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#"></a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="{{ path('homepage') }}">Acasa</a></li>
+                        <li><a href="#">Despre noi</a></li>
+                        <li><a href="#">Contact</a></li>
+                        {% if app.user %}
+                            <li><a href="{{ path('localuri_user_myAccount') }}">Contul meu</a></li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    {% endblock %}
 
-        <section id="wrapper">
-            <header id="header">
-                <div class="top">
-                    {% block navigation %}
-                        <nav>
-                            <ul class="navigation">
-                                <li><a href="{{ path('homepage') }}">Acasa</a></li>
-                                <li><a href="#">Despre noi</a></li>
-                                <li><a href="#">Contact</a></li>
-                                {% if app.user %}
-                                    <li><a href="{{ path('localuri_user_myAccount') }}">Contul meu</a></li>
-                                {% else %}
-                                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    {% endblock %}
+    <!-- Masthead
+   ================================================== -->
+    <header class="jumbotron subhead" id="overview">
+        <div class="container">
+            <h1>&nbsp;</h1>
+            <h1>e-Localuri</h1>
+            <p class="lead">Cele mai tari localuri din România</p>
+        </div>
+    </header>
+
+
+    <div class="bs-docs-canvas">
+        <div class="container">
+
+            <div class="fluid-grid">
+                <div class="row">
+                    <div class="span12">
+                        <div class="row-fluid">
+                            <div class="span9">
+                                {% block body %}{% endblock %}
+                            </div>
+                            <div class="span3">
+                                {% block sidebar %}{% endblock %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <hgroup>
-                    <h2>{% block blog_title %}<a href="#">Localuri</a>{% endblock %}</h2>
-                    <h3>{% block blog_tagline %}<a href="#">Cele mai tari localuri din România</a>{% endblock %}</h3>
-                </hgroup>
-            </header>
+        </div>  <!-- /container -->
 
-            <section class="main-col">
-                {% block body %}{% endblock %}
-            </section>
-            <aside class="sidebar">
-                {% block sidebar %}{% endblock %}
-            </aside>
-
-            <div id="footer">
+        <footer class="footer">
+            <div class="container">
                 {% block footer %}
                     Portal localuri - cele mai mişto localuri din România
                 {% endblock %}
             </div>
-        </section>
+        </footer>
 
+    </div>  <!-- /bs-docs-canvas -->
         {% block javascripts %}{% endblock %}
     </body>
 </html>
