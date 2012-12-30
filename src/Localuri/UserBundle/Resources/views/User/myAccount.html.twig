@@ -1,0 +1,21 @@
+{% extends 'LocaluriUserBundle::layout.html.twig' %}
+
+{% block title %}Contul meu{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Contul Meu</h1>
+    </header>
+    <article>
+        <div class="fos_user_user_show">
+            <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+        </div>
+    </article>
+{% endblock %}
+
+{% block sidebar %}
+    <p><a href="{{ path('fos_user_profile_edit') }}"> Modifica detalii cont </a></p>
+    <p><a href="{{ path('fos_user_change_password') }}"> Schimba parola </a></p>
+    <p><a href="{{ path('fos_user_security_logout') }}">Logout</a></p>
+{% endblock %}

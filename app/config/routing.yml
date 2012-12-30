@@ -3,6 +3,12 @@ localuri_user:
     resource: "@LocaluriUserBundle/Resources/config/routing.yml"
     prefix:   /user
 
+#todo: change this
+homepage:
+    pattern:  /
+    defaults: { _controller: LocaluriUserBundle:User:myAccount }
+    requirements:
+        _method:  GET
 
 #FosUserBundle Routes
 fos_user_security:
