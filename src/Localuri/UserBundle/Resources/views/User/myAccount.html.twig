@@ -1,4 +1,4 @@
-{% extends 'LocaluriUserBundle::layout.html.twig' %}
+{% extends 'LocaluriUserBundle:User:layout.html.twig' %}
 
 {% block title %}Contul meu{% endblock%}
 
@@ -12,10 +12,4 @@
             <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
         </div>
     </article>
-{% endblock %}
-
-{% block sidebar %}
-    <p><a href="{{ path('fos_user_profile_edit') }}"> Modifica detalii cont </a></p>
-    <p><a href="{{ path('fos_user_change_password') }}"> Schimba parola </a></p>
-    <p><a href="{{ path('fos_user_security_logout') }}">Logout</a></p>
 {% endblock %}
