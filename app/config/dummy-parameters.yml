@@ -1,0 +1,15 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     <your-database-name>
+    database_user:     <your-database-user>
+    database_password: <your-database-password>
+
+    mailer_transport:  gmail
+    mailer_host:       smtp.gmail.com
+    mailer_user:       <your-gmail-account>
+    mailer_password:   <your-gmail-password>
+
+    locale:            en
+    secret:            <your-secret-code... this is a string of letters and numbers>
