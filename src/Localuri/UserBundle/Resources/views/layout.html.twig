@@ -3,7 +3,6 @@
 {% block body %}
     {% block fos_user_content %}{% endblock %}
 {% endblock %}
-{% set usr = app.user.username | default('anon') %}
 {% block sidebar %}
         <p><a href="{{ path('fos_user_profile_edit') }}"> Modifica detalii cont </a></p>
         <p><a href="{{ path('fos_user_change_password') }}"> Schimba parola </a></p>
