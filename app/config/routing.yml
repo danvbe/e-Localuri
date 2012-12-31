@@ -11,6 +11,7 @@ localuri_user:
     resource: "@LocaluriUserBundle/Resources/config/routing.yml"
     prefix:   /user
 
+
 #FosUserBundle Routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
