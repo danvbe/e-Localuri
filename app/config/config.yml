@@ -62,6 +62,16 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+services:
+     twig.extension.text:
+           class: Twig_Extensions_Extension_Text
+           tags:
+              - { name: twig.extension }
+
+     authentication_handler:
+         class: Localuri\UserBundle\Component\Authentication\Handler\LoginSuccessHandler
+         arguments: [@router, @security.context]
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
