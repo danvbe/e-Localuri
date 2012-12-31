@@ -1,0 +1,8 @@
+parameters:
+    my_log.class:      Localuri\LogBundle\Entity\Log
+
+services:
+    my_log:
+        class:        "%my_log.class%"
+        arguments:
+            em: "@doctrine.orm.entity_manager"

@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Localuri\UserBundle\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="lcl_user")
  */
 class User extends BaseUser
@@ -36,12 +37,11 @@ class User extends BaseUser
 /*
     public function __construct()
     {
-        $this->locals = new ArrayCollection();
-        $this->telephones = new ArrayCollection();
-        $this->addresses = new ArrayCollection();
+        //$this->logs = new ArrayCollection();
+        //$this->telephones = new ArrayCollection();
+        //$this->addresses = new ArrayCollection();
     }
 */
-
     /**
      * Get id
      *
