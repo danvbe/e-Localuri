@@ -11,7 +11,7 @@ lcl_user_admin_new:
     defaults: { _controller: "LocaluriUserBundle:User:new" }
 
 lcl_user_admin_create:
-    pattern:  /create
+    pattern:  /creates
     defaults: { _controller: "LocaluriUserBundle:User:create" }
     requirements: { _method: post }
 
