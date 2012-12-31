@@ -20,3 +20,6 @@ web/bundles/*
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+
+#bkp files
+*.php~

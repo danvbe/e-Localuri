@@ -1,0 +1,6 @@
+#Main routes
+lcl_user_myAccount:
+    pattern:  /
+    defaults: { _controller: LocaluriUserBundle:User:myAccount }
+    requirements:
+        _method:  GET
