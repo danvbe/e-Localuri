@@ -1,8 +1,8 @@
 lcl_user:
     resource: "@LocaluriUserBundle/Resources/config/routing/user.yml"
-    prefix:   /
+    prefix:   /user
 
 #admin part
 lcl_user_admin:
     resource: "@LocaluriUserBundle/Resources/config/routing/user_admin.yml"
-    prefix:   /admin
+    prefix:   /admin/user

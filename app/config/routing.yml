@@ -9,7 +9,9 @@ homepage:
 #Bundles' routes
 localuri_user:
     resource: "@LocaluriUserBundle/Resources/config/routing.yml"
-    prefix:   /user
+
+localuri_log:
+    resource: "@LocaluriLogBundle/Resources/config/routing.yml"
 
 
 #FosUserBundle Routes
