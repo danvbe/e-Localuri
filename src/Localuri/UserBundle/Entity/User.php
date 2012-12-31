@@ -41,4 +41,14 @@ class User extends BaseUser
         $this->addresses = new ArrayCollection();
     }
 */
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

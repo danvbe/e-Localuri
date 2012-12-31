@@ -23,7 +23,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 
 	public function onAuthenticationSuccess(Request $request, TokenInterface $token)
 	{
-        $route_name = ($this->security->isGranted('ROLE_SUPER_ADMIN'))?'localuri_user_myAccount':'homepage';
+        $route_name = ($this->security->isGranted('ROLE_SUPER_ADMIN'))?'lcl_user_myAccount':'homepage';
 
         $response =new RedirectResponse($this->router->generate($route_name));
         return $response;

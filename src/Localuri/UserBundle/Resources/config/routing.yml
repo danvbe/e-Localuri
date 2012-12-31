@@ -1,11 +1,8 @@
-#Main routes
-localuri_user_myAccount:
-    pattern:  /
-    defaults: { _controller: LocaluriUserBundle:User:myAccount }
-    requirements:
-        _method:  GET
+lcl_user:
+    resource: "@LocaluriUserBundle/Resources/config/routing/user.yml"
+    prefix:   /
 
 #admin part
-localuri_user_admin:
-    resource: "@LocaluriUserBundle/Resources/config/routing_admin.yml"
+lcl_user_admin:
+    resource: "@LocaluriUserBundle/Resources/config/routing/user_admin.yml"
     prefix:   /admin
