@@ -1,0 +1,12 @@
+lcl_log_admin:
+    pattern:  /
+    defaults: { _controller: "LocaluriLogBundle:Log:index" }
+
+lcl_log_admin_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LocaluriLogBundle:Log:show" }
+
+lcl_log_admin_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LocaluriLogBundle:Log:delete" }
+    requirements: { _method: post }
