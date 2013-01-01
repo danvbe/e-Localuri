@@ -26,7 +26,8 @@
         "knplabs/knp-paginator-bundle": "2.1.*",
 		"friendsofsymfony/user-bundle": "*",
         "twitter/bootstrap": "v2.1.0",
-        "leafo/lessphp": "dev-master"
+        "leafo/lessphp": "dev-master",
+        "phpoption/phpoption": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
