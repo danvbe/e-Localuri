@@ -19,6 +19,12 @@ class User extends BaseUser
      */
     protected $id;
 
+    /** @ORM\Column(name="created_at", type="datetime") */
+    protected $created_at;
+
+    /** @ORM\Column(name="updated_at", type="datetime") */
+    protected $updated_at;
+
     /*
      * @ORM\OneToMany(targetEntity="Local", mappedBy="owner", cascade={"remove"})
      */
@@ -42,6 +48,20 @@ class User extends BaseUser
         //$this->addresses = new ArrayCollection();
     }
 */
+
+    /** @ORM\PrePersist */
+    public function prePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+    }
+
+    /** @ORM\PreUpdate */
+    public function preUpdate()
+    {
+        $this->updated_at = new \DateTime();
+    }
+
     /**
      * Get id
      *

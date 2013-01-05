@@ -57,8 +57,17 @@ class Log
      */
     protected $description;
 
+    /** @ORM\Column(name="created_at", type="datetime") */
+    protected $created_at;
+
     public function __construct(\Doctrine\ORM\EntityManager $em){
         $this->em = $em;
+    }
+
+    /** @ORM\PrePersist */
+    public function prePersist()
+    {
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -81,6 +90,7 @@ class Log
         $this->em->flush();
         return true;
     }
+
 
     /**
      * Get id
