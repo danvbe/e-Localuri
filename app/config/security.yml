@@ -23,6 +23,15 @@ security:
                 login_path: /login
                 check_path: /login_check
                 success_handler: authentication_handler
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                    google:             "/login/check-google"
+                login_path:        /login
+                failure_path:      /login
+
+                oauth_user_provider:
+                    service: my_user_provider
             logout:
                 path: /logout
                 target: /
