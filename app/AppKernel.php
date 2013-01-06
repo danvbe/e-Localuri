@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Localuri\UserBundle\LocaluriUserBundle(),
             new Localuri\LogBundle\LocaluriLogBundle(),
         );

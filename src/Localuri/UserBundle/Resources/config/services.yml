@@ -1,7 +1,10 @@
 parameters:
-#    localuri_user.example.class: Localuri\UserBundle\Example
+    my_user_provider.class: Localuri\UserBundle\Security\Core\User\FOSUBUserProvider
 
 services:
+    my_user_provider:
+        class: "%my_user_provider.class%"
+        arguments: [@fos_user.user_manager,{facebook: facebook_id}]
 #    localuri_user.example:
 #        class: %localuri_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
