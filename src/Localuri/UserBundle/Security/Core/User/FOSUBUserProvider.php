@@ -20,17 +20,11 @@ class FOSUBUserProvider extends BaseClass
      */
     public function connect($user, UserResponseInterface $response)
     {
-        //throw new \RuntimeException('Test error');
-        $property = $this->getProperty($response);
-        $setter = 'set'.ucfirst($property);
-
-        $username = $response->getUsername();
-
+        //on connect - get the access token
         $serviceAccessTokenName = $response->getResourceOwner()->getName() . 'AccessToken';
         $serviceAccessTokenSetter = 'set' . ucfirst($serviceAccessTokenName);
 
-        if(method_exists($user, $serviceAccessTokenSetter))
-            $user->$serviceAccessTokenSetter($response->getAccessToken());
+        $user->$serviceAccessTokenSetter($response->getAccessToken());
 
         $this->userManager->updateUser($user);
     }
@@ -48,27 +42,29 @@ class FOSUBUserProvider extends BaseClass
             $setter = 'set'.ucfirst($service);
             $setter_id = $setter.'Id';
             $setter_token = $setter.'AccessToken';
-                //throw new AccountNotLinkedException(sprintf("User '%s' not found.", $username));
+            //throw new AccountNotLinkedException(sprintf("User '%s' not found.", $username));
             // create new user here
             $user = $this->userManager->createUser();
+            $user->$setter_id($username);
+            $user->$setter_token($response->getAccessToken());
+            //I have set all requested data with the user's username
+            //modify here with relevant data
             $user->setUsername($username);
             $user->setEmail($username);
             $user->setPassword($username);
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
         }
 
+        //if user exists - go with the HWIOAuth way
         $user = parent::loadUserByOAuthUserResponse($response);
 
         $serviceName = $response->getResourceOwner()->getName();
         $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
 
-        if (method_exists($user, $setter)) {
-            $user->$setter($response->getAccessToken());
-        }
+        //update access token
+        $user->$setter($response->getAccessToken());
 
         return $user;
     }
