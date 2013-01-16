@@ -39,22 +39,23 @@ class FOSUBUserProvider extends BaseClass
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
-            $setter = 'set'.ucfirst($service);
-            $setter_id = $setter.'Id';
-            $setter_token = $setter.'AccessToken';
-            //throw new AccountNotLinkedException(sprintf("User '%s' not found.", $username));
-            // create new user here
             $user = $this->userManager->createUser();
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
-            //I have set all requested data with the user's username
-            //modify here with relevant data
-            $user->setUsername($username);
-            $user->setEmail($username);
-            $user->setPassword($username);
-            $user->setEnabled(true);
-            $this->userManager->updateUser($user);
-            return $user;
+            switch($service) {
+                case 'google':
+                    $user = $this->loadGoogleUser($response);
+                    break;
+                case 'facebook':
+                    $user = $this->loadFacebookUser($response);
+                    break;
+            }
+
+            //the user needs to be reloaded in order to assign roles...
+            //don't know why, but this is the ONLY way it worked
+            $user1 = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+            $user1->addRole('ROLE_ADMIN');
+            $this->userManager->updateUser($user1);
+
+            return $user1;
         }
 
         //if user exists - go with the HWIOAuth way
@@ -66,6 +67,36 @@ class FOSUBUserProvider extends BaseClass
         //update access token
         $user->$setter($response->getAccessToken());
 
+        return $user;
+    }
+
+    protected function loadGoogleUser(UserResponseInterface $response){
+        $user = $this->userManager->createUser();
+        $username = $response->getUsername();
+        $user->setGoogleId($username);
+        $user->setGoogleAccessToken($response->getAccessToken());
+        $email = $response->getEmail();
+        $user->setUsername($username);
+        $user->setName($response->getRealName());
+        $user->setPassword('');
+        $user->setEmail($email);
+        $user->setEnabled(true);
+        $this->userManager->updateUser($user);
+        return $user;
+    }
+
+    protected function loadFacebookUser(UserResponseInterface $response){
+        $username = $response->getUsername();
+        $user = $this->userManager->createUser();
+        $user->setFacebookId($username);
+        $user->setFacebookAccessToken($response->getAccessToken());
+        $email = $response->getEmail();
+        $user->setUsername($username);
+        $user->setName($response->getName());
+        $user->setPassword('');
+        $user->setEmail($email);
+        $user->setEnabled(true);
+        $this->userManager->updateUser($user);
         return $user;
     }
 

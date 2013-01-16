@@ -98,11 +98,27 @@ hwi_oauth:
             type:                facebook
             client_id:           "%facebook_app_id%"
             client_secret:       "%facebook_app_secret%"
-            scope:               ""
+            scope:               "email"
+            user_response_class: "Localuri\UserBundle\OAuth\Response\FacebookUserResponse"
+            paths:
+                email: email
+                name: name
+                firstname: first_name
+                lastname: last_name
+                gender: gender
+                locale: locale
         google:
             type:                google
             client_id:           "%google_app_id%"
             client_secret:       "%google_app_secret%"
             scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            user_response_class: "Localuri\UserBundle\OAuth\Response\GoogleUserResponse"
+            paths:
+                email: email
+                profilepicture: picture
+                firstname: given_name
+                lastname: family_name
+                gender: gender
+                locale: locale
     # here you will add one (or more) configurations for resource owners
     # and other settings you want to adjust in this bundle, just checkout the list below!
