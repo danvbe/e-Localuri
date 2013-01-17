@@ -61,6 +61,7 @@ class UserController extends Controller
 
         $logger = $this->get('my_log');
         $logger->doLog('show', null, $this->getUser(), 'User', 'id: '.$id);
+
         return $this->render('LocaluriUserBundle:User:Admin/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));

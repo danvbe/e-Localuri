@@ -1,0 +1,4 @@
+#admin routes
+LocaluriAddressBundle_admin_address:
+    resource: "@LocaluriAddressBundle/Resources/config/routing/address.yml"
+    prefix:   /admin/address

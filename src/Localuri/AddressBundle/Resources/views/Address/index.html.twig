@@ -1,0 +1,52 @@
+{% extends 'LocaluriAddressBundle::backend.html.twig' %}
+{% block body %}
+<h1>Address list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Country_code</th>
+            <th>County_code</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>Number</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_address_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.countrycode }}</td>
+            <td>{{ entity.countycode }}</td>
+            <td>{{ entity.city }}</td>
+            <td>{{ entity.street }}</td>
+            <td>{{ entity.number }}</td>
+            <td>{{ entity.latitude }}</td>
+            <td>{{ entity.longitude }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_address_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_address_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('admin_address_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

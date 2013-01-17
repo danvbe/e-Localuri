@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Localuri\UserBundle\LocaluriUserBundle(),
             new Localuri\LogBundle\LocaluriLogBundle(),
+            new Localuri\AddressBundle\LocaluriAddressBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
