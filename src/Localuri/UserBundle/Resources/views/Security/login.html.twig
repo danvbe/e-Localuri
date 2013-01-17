@@ -19,6 +19,9 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
 </form>
+<a href="login/facebook">Login cu Facebook</a> |
+<a href="login/google">Login cu Google</a> |
+<a href="{{ path("fos_user_resetting_request")}}">Am uitat parola</a>
 {% endblock fos_user_content %}
 
 {% block sidebar %}

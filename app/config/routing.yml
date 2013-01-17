@@ -1,3 +1,7 @@
+localuri_address:
+    resource: "@LocaluriAddressBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #todo: change this
 homepage:
     pattern:  /

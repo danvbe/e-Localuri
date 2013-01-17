@@ -1,0 +1,60 @@
+{% extends 'LocaluriAddressBundle::backend.html.twig' %}
+{% block body %}
+<h1>Address</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Country_code</th>
+            <td>{{ entity.countrycode }}</td>
+        </tr>
+        <tr>
+            <th>County_code</th>
+            <td>{{ entity.countycode }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ entity.city }}</td>
+        </tr>
+        <tr>
+            <th>Street</th>
+            <td>{{ entity.street }}</td>
+        </tr>
+        <tr>
+            <th>Number</th>
+            <td>{{ entity.number }}</td>
+        </tr>
+        <tr>
+            <th>Latitude</th>
+            <td>{{ entity.latitude }}</td>
+        </tr>
+        <tr>
+            <th>Longitude</th>
+            <td>{{ entity.longitude }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_address') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_address_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_address_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

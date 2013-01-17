@@ -1,0 +1,30 @@
+admin_address:
+    pattern:  /
+    defaults: { _controller: "LocaluriAddressBundle:Address:index" }
+
+admin_address_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LocaluriAddressBundle:Address:show" }
+
+admin_address_new:
+    pattern:  /new
+    defaults: { _controller: "LocaluriAddressBundle:Address:new" }
+
+admin_address_create:
+    pattern:  /create
+    defaults: { _controller: "LocaluriAddressBundle:Address:create" }
+    requirements: { _method: post }
+
+admin_address_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LocaluriAddressBundle:Address:edit" }
+
+admin_address_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LocaluriAddressBundle:Address:update" }
+    requirements: { _method: post }
+
+admin_address_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LocaluriAddressBundle:Address:delete" }
+    requirements: { _method: post }
