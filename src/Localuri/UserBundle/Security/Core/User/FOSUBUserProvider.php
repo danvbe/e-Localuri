@@ -47,6 +47,9 @@ class FOSUBUserProvider extends BaseClass
                 case 'facebook':
                     $user = $this->loadFacebookUser($response);
                     break;
+                case 'github':
+                    $user = $this->loadGithubUser($response);
+                    break;
             }
 
             //the user needs to be reloaded in order to assign roles...
@@ -93,6 +96,21 @@ class FOSUBUserProvider extends BaseClass
         $email = $response->getEmail();
         $user->setUsername($username);
         $user->setName($response->getName());
+        $user->setPassword('');
+        $user->setEmail($email);
+        $user->setEnabled(true);
+        $this->userManager->updateUser($user);
+        return $user;
+    }
+
+    protected function loadGithubUser(UserResponseInterface $response){
+        $username = $response->getUsername();
+        $user = $this->userManager->createUser();
+        $user->setGithubId($username);
+        $user->setGithubAccessToken($response->getAccessToken());
+        $email = $response->getEmail();
+        $user->setUsername($username);
+        $user->setName($response->getRealName());
         $user->setPassword('');
         $user->setEmail($email);
         $user->setEnabled(true);

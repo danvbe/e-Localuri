@@ -57,6 +57,9 @@ facebook_login:
 google_login:
     pattern: /login/check-google
 
+github_login:
+    pattern: /login/check-github
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability

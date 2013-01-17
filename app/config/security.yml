@@ -27,6 +27,7 @@ security:
                 resource_owners:
                     facebook:           "/login/check-facebook"
                     google:             "/login/check-google"
+                    github:             "/login/check-github"
                 login_path:        /login
                 failure_path:      /login
 
