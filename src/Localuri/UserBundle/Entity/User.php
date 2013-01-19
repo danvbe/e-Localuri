@@ -22,6 +22,9 @@ class User extends BaseUser
     /** @ORM\Column(name="name", type="string", length=255, nullable=true) */
     protected $name;
 
+    /** @ORM\Column(name="is_site_registered", type=boolean, nullable=true) */
+    protected $is_site_registered;
+
     /** @ORM\Column(name="locale", type="string", length=255, nullable=true) */
     protected $locale;
 
@@ -72,6 +75,7 @@ class User extends BaseUser
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
+        $this->is_site_registered = !(isset($this->facebook_id) || isset($this->google_id) || isset($this->github_id));
     }
 
     /** @ORM\PreUpdate */
