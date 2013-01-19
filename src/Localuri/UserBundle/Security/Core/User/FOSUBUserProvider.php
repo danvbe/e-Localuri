@@ -9,7 +9,8 @@
 
 namespace Localuri\UserBundle\Security\Core\User;
 
-use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface,
+    HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 
 class FOSUBUserProvider extends BaseClass
@@ -40,7 +41,14 @@ class FOSUBUserProvider extends BaseClass
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
             $user = $this->userManager->createUser();
-            //we check for the email existence - if so, propose a reset password.
+            //we check for the email existence - if so, redirect to login.
+            if($existent_user = $this->userManager->findUserByEmail($response->getEmail())){
+                throw new \Symfony\Component\Security\Core\Exception\AuthenticationException(sprintf("Email '%s' already in use.", $response->getEmail()));
+            }
+            //we check for the username existence - if so, redirect to login.
+            if($existent_user = $this->userManager->findUserByUsername($response->getEmail())){
+                throw new \Symfony\Component\Security\Core\Exception\AuthenticationException(sprintf("Username '%s' already in use.", $response->getEmail()));
+            }
             switch($service) {
                 case 'google':
                     $user = $this->loadGoogleUser($response);
@@ -80,7 +88,7 @@ class FOSUBUserProvider extends BaseClass
         $user->setGoogleId($username);
         $user->setGoogleAccessToken($response->getAccessToken());
         $email = $response->getEmail();
-        $user->setUsername($username);
+        $user->setUsername($email);
         $user->setName($response->getRealName());
         $user->setPassword('');
         $user->setEmail($email);
@@ -95,7 +103,7 @@ class FOSUBUserProvider extends BaseClass
         $user->setFacebookId($username);
         $user->setFacebookAccessToken($response->getAccessToken());
         $email = $response->getEmail();
-        $user->setUsername($username);
+        $user->setUsername($email);
         $user->setName($response->getName());
         $user->setPassword('');
         $user->setEmail($email);
@@ -110,7 +118,7 @@ class FOSUBUserProvider extends BaseClass
         $user->setGithubId($username);
         $user->setGithubAccessToken($response->getAccessToken());
         $email = $response->getEmail();
-        $user->setUsername($username);
+        $user->setUsername($email);
         $user->setName($response->getRealName());
         $user->setPassword('');
         $user->setEmail($email);

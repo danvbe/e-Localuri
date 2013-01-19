@@ -93,6 +93,7 @@ hwi_oauth:
         properties:
             facebook: facebook_id
             google: google_id
+            github: github_id
     resource_owners:
         facebook:
             type:                facebook
