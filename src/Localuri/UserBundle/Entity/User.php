@@ -22,7 +22,7 @@ class User extends BaseUser
     /** @ORM\Column(name="name", type="string", length=255, nullable=true) */
     protected $name;
 
-    /** @ORM\Column(name="is_site_registered", type=boolean, nullable=true) */
+    /** @ORM\Column(name="is_site_registered", type="boolean", nullable=true) */
     protected $is_site_registered;
 
     /** @ORM\Column(name="locale", type="string", length=255, nullable=true) */
@@ -81,6 +81,7 @@ class User extends BaseUser
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
+        //if the user is registered via OAuth, then set $this->is_site_registered to false;
         $this->is_site_registered = !(isset($this->facebook_id) || isset($this->google_id) || isset($this->github_id));
     }
 
@@ -110,6 +111,17 @@ class User extends BaseUser
     {
         $this->facebook_id = $facebookId;
         return $this;
+    }
+
+    /**
+     * This is here for HWIOAuth to work
+     *
+     * @param $facebookId
+     * @return User
+     */
+    public function setFacebook_id($facebookId)
+    {
+        return $this->setFacebookId($facebookId);
     }
 
     /**
@@ -201,6 +213,17 @@ class User extends BaseUser
     }
 
     /**
+     * This is here for HWIOAuth to work
+     *
+     * @param $googleId
+     * @return User
+     */
+    public function setGoogle_id($googleId)
+    {
+        return $this->setGoogleId($googleId);
+    }
+
+    /**
      * Get google_id
      *
      * @return string 
@@ -286,6 +309,17 @@ class User extends BaseUser
     {
         $this->github_id = $githubId;
         return $this;
+    }
+
+    /**
+     * This is here for HWIOAuth to work
+     *
+     * @param $githubId
+     * @return User
+     */
+    public function setGithub_id($githubId)
+    {
+        return $this->setGithubId($githubId);
     }
 
     /**

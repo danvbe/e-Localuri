@@ -36,6 +36,10 @@
     </div>
     {% endblock %}
 
+    {% block flash_notifications %}
+        <div id="flash-message-success">{% for flashMessage in app.session.flashbag.get('success') %} {{ flashMessage }} {% endfor %}</div>
+        <div id="flash-message-error">{% for flashMessage in app.session.flashbag.get('error') %} {{ flashMessage }} {% endfor %}</div>
+    {% endblock %}
     <!-- Masthead
    ================================================== -->
     <header class="jumbotron subhead" id="overview">
