@@ -40,6 +40,7 @@ class FOSUBUserProvider extends BaseClass
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
             $user = $this->userManager->createUser();
+            //we check for the email existence - if so, propose a reset password.
             switch($service) {
                 case 'google':
                     $user = $this->loadGoogleUser($response);
