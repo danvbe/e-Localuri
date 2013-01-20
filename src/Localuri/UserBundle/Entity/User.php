@@ -114,17 +114,6 @@ class User extends BaseUser
     }
 
     /**
-     * This is here for HWIOAuth to work
-     *
-     * @param $facebookId
-     * @return User
-     */
-    public function setFacebook_id($facebookId)
-    {
-        return $this->setFacebookId($facebookId);
-    }
-
-    /**
      * Get facebook_id
      *
      * @return string 
@@ -213,17 +202,6 @@ class User extends BaseUser
     }
 
     /**
-     * This is here for HWIOAuth to work
-     *
-     * @param $googleId
-     * @return User
-     */
-    public function setGoogle_id($googleId)
-    {
-        return $this->setGoogleId($googleId);
-    }
-
-    /**
      * Get google_id
      *
      * @return string 
@@ -309,17 +287,6 @@ class User extends BaseUser
     {
         $this->github_id = $githubId;
         return $this;
-    }
-
-    /**
-     * This is here for HWIOAuth to work
-     *
-     * @param $githubId
-     * @return User
-     */
-    public function setGithub_id($githubId)
-    {
-        return $this->setGithubId($githubId);
     }
 
     /**
