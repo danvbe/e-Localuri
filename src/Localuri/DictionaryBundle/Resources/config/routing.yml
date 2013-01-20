@@ -1,0 +1,3 @@
+localuri_dictionary_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: LocaluriDictionaryBundle:Default:index }

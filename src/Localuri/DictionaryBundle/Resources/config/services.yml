@@ -1,0 +1,6 @@
+parameters:
+    my_dict.class:      Localuri\DictionaryBundle\Repository\DictionaryRepository
+
+services:
+    my_dict:
+        class:        "%my_dict.class%"
