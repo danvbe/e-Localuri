@@ -20,13 +20,20 @@ class DictionaryRepository extends EntityRepository
      */
     public function getArrayValues($type = null){
         $q = $this->createQueryBuilder('d')
-            ->select('d.id')
-            ->where('d.type = ?',$type)
-            ->andWhere('d.expires_at is null or d.expires_at <= NOW()')
-            ->orderBy('d.value');
+            ->select('d');
+        if(null === $type)
+            $q->where('d.type is null')
+                ->andWhere('d.expired_at is null or d.expired_at <= :now')
+                ->orderBy('d.value')
+                ->setParameters(array('now'=> new \DateTime()));
+        else
+            $q->where('d.type = :type')
+                ->andWhere('d.expired_at is null or d.expired_at <= :now')
+                ->orderBy('d.value')
+                ->setParameters(array('type'=>$type,'now'=> new \DateTime()));
 
         $array = array();
-        foreach($q->execute() as $dict)
+        foreach($q->getQuery()->execute() as $dict)
             $array[$dict->getKey()] = $dict->getValue();
 
         return $array;
@@ -41,13 +48,19 @@ class DictionaryRepository extends EntityRepository
      */
     public function getDictionary($key , $type = null , $date = null){
         $q = $this->createQueryBuilder('d')
-            ->select('d.id')
-            ->where('d.type = ?',$type)
-            ->andWhere('d.key = ?',$key)
-            ->orderBy('d.expired_at');
+            ->select('d');
+        if($type)
+            $q->where('d.type = :$type')
+                ->setParameter('type',$type);
+        else $q->where('d.type is null');
+
         if($date)
-            $q->andWhere('IFNULL(d.expired_at,NOW()) > ?',$date);
+            $q->andWhere('d.expired_at > :date or d.expired_at is null')
+                ->setParameter('date',$date);
+
+            $q->orderBy('d.expired_at');
 
         return $q->fetchOne();
     }
+
 }

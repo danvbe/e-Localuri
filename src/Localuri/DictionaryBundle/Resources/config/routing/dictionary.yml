@@ -1,0 +1,30 @@
+admin_dictionary:
+    pattern:  /
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:index" }
+
+admin_dictionary_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:show" }
+
+admin_dictionary_new:
+    pattern:  /new
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:new" }
+
+admin_dictionary_create:
+    pattern:  /create
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:create" }
+    requirements: { _method: post }
+
+admin_dictionary_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:edit" }
+
+admin_dictionary_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:update" }
+    requirements: { _method: post }
+
+admin_dictionary_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "LocaluriDictionaryBundle:Dictionary:delete" }
+    requirements: { _method: post }

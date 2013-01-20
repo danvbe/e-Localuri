@@ -5,9 +5,16 @@ namespace Localuri\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use \Localuri\DictionaryBundle\Form\Type\DictionaryFormField;
 
 class UserType extends AbstractType
 {
+    protected $dictionary_service;
+
+    public function __construct($dictionary_service){
+        $this->dictionary_service = $dictionary_service;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -15,16 +22,17 @@ class UserType extends AbstractType
             ->add('usernameCanonical')
             ->add('email')
             ->add('emailCanonical')
+            ->add('genre',new DictionaryFormField($this->dictionary_service,'genre'),array(
+                'empty_value'=>'Select genre',
+                'required'=>false,
+            ))
             ->add('enabled')
             ->add('salt')
             ->add('password')
             ->add('lastLogin')
-            ->add('locked')
-            ->add('expired')
             ->add('confirmationToken')
             ->add('passwordRequestedAt')
             ->add('roles')
-            ->add('credentialsExpired')
         ;
     }
 

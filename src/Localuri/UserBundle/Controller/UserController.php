@@ -75,7 +75,7 @@ class UserController extends Controller
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createForm(new UserType(), $entity);
+        $form   = $this->createForm($this->get('user_type'), $entity);
 
         return $this->render('LocaluriUserBundle:User:Admin/new.html.twig', array(
             'entity' => $entity,
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new User();
-        $form = $this->createForm(new UserType(), $entity);
+        $form = $this->createForm($this->get('user_type'), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -123,7 +123,7 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createForm(new UserType(), $entity);
+        $editForm = $this->createForm($this->get('user_type'), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('LocaluriUserBundle:User:Admin/edit.html.twig', array(
@@ -150,7 +150,7 @@ class UserController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UserType(), $entity);
+        $editForm = $this->createForm($this->get('user_type'), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

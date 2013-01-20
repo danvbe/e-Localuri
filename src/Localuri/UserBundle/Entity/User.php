@@ -46,6 +46,9 @@ class User extends BaseUser
     /** @ORM\Column(name="github_access_token", type="string", length=255, nullable=true) */
     protected $github_access_token;
 
+    /** @ORM\Column(name="genre", type="string", length=255, nullable=true) */
+    protected $genre;
+
     /** @ORM\Column(name="created_at", type="datetime") */
     protected $created_at;
 
@@ -324,5 +327,49 @@ class User extends BaseUser
     public function getGithubAccessToken()
     {
         return $this->github_access_token;
+    }
+
+    /**
+     * Set is_site_registered
+     *
+     * @param boolean $isSiteRegistered
+     * @return User
+     */
+    public function setIsSiteRegistered($isSiteRegistered)
+    {
+        $this->is_site_registered = $isSiteRegistered;
+        return $this;
+    }
+
+    /**
+     * Get is_site_registered
+     *
+     * @return boolean 
+     */
+    public function getIsSiteRegistered()
+    {
+        return $this->is_site_registered;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     * @return User
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string 
+     */
+    public function getGenre()
+    {
+        return $this->genre;
     }
 }

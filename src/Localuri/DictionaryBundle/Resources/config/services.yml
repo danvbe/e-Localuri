@@ -1,6 +1,7 @@
 parameters:
-    my_dict.class:      Localuri\DictionaryBundle\Repository\DictionaryRepository
+    dictionary_service.class:      Localuri\DictionaryBundle\Entity\DictionaryService
 
 services:
-    my_dict:
-        class:        "%my_dict.class%"
+    dictionary_service:
+        class:        "%dictionary_service.class%"
+        arguments: [@doctrine.orm.entity_manager]

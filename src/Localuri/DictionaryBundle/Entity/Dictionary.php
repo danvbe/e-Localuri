@@ -26,13 +26,13 @@ class Dictionary
      */
     protected $id;
 
-    /** @ORM\Column(name="type", type="string", length=255, nullable=true) */
+    /** @ORM\Column(name="type_", type="string", length=255, nullable=true) */
     protected $type;
 
-    /** @ORM\Column(name="key", type="string", length=255, nullable=false) */
+    /** @ORM\Column(name="key_", type="string", length=255, nullable=false) */
     protected $key;
 
-    /** @ORM\Column(name="value", type="string", length=255, nullable=false) */
+    /** @ORM\Column(name="value_", type="string", length=255, nullable=false) */
     protected $value;
 
     /** @ORM\Column(name="description", type="text", nullable=true) */
