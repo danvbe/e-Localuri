@@ -8,6 +8,8 @@ services:
     user_type:
         class: Localuri\UserBundle\Form\UserType
         arguments: [@dictionary_service]
-#    localuri_user.example:
-#        class: %localuri_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    localuri_user.password_resetting:
+        class: Localuri\UserBundle\EventListener\PasswordResettingListener
+        arguments: [@router,@security.context, @fos_user.user_manager]
+        tags:
+            - { name: kernel.event_subscriber }

@@ -24,7 +24,7 @@
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
         "knplabs/knp-paginator-bundle": "2.1.*",
-		"friendsofsymfony/user-bundle": "*",
+		"friendsofsymfony/user-bundle": "dev-master",
         "twitter/bootstrap": "v2.1.0",
         "leafo/lessphp": "dev-master",
         "phpoption/phpoption": "dev-master",

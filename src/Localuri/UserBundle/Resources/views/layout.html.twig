@@ -7,4 +7,7 @@
         <p><a href="{{ path('fos_user_profile_edit') }}"> Modifica detalii cont </a></p>
         <p><a href="{{ path('fos_user_change_password') }}"> Schimba parola </a></p>
         <p><a href="{{ path('fos_user_security_logout') }}">Logout</a></p>
+		{% if (not app.user.isSiteRegistered ) %}
+			<p><a href="{{ path('fos_user_resetting_request') }}">Seteaza o parola</a></p>
+		{% endif %}
 {% endblock %}
