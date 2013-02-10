@@ -9,6 +9,20 @@
         {% stylesheets '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
+
+        {% stylesheets
+            'css/backoffice/datepicker.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% javascripts
+			'//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'
+			'//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js'
+			'js/bootstrap-datepicker.js'
+		%}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
