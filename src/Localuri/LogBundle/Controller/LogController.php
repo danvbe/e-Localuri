@@ -25,7 +25,7 @@ class LogController extends Controller
 
         $entities = $em->getRepository('LocaluriLogBundle:Log')->findAll();
 
-        return $this->render('LocaluriLogBundle:Log:index.html.twig', array(
+        return $this->render('LocaluriLogBundle:Log:backend/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -42,12 +42,12 @@ class LogController extends Controller
         $entity = $em->getRepository('LocaluriLogBundle:Log')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Log entity.');
+            throw $this->createNotFoundException('Unable to find backend entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('LocaluriLogBundle:Log:show.html.twig', array(
+        return $this->render('LocaluriLogBundle:Log:backend/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -68,7 +68,7 @@ class LogController extends Controller
             $entity = $em->getRepository('LocaluriLogBundle:Log')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Log entity.');
+                throw $this->createNotFoundException('Unable to find backend entity.');
             }
 
             $em->remove($entity);

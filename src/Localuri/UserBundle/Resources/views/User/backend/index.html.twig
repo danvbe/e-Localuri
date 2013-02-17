@@ -1,0 +1,51 @@
+{% extends 'LocaluriUserBundle::backend.html.twig' %}
+
+{% block body %}
+<h1>User list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Enabled</th>
+            <th>Lastlogin</th>
+            <th>Locked</th>
+            <th>Expired</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('lcl_user_admin_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.enabled }}</td>
+            <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.locked }}</td>
+            <td>{{ entity.expired }}</td>
+            <td>{{ entity.roles }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('lcl_user_admin_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('lcl_user_admin_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('lcl_user_admin_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

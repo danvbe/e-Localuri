@@ -20,7 +20,7 @@ class UserController extends Controller
         if (!is_object($user) || !$user instanceof User)
             return $this->redirect($this->generateUrl('fos_user_security_login'));
 
-        return $this->render('LocaluriUserBundle:User:myAccount.html.twig', array('user'=>$user));
+        return $this->render('LocaluriUserBundle:User:frontend/myAccount.html.twig', array('user'=>$user));
     }
 
 
@@ -37,7 +37,7 @@ class UserController extends Controller
 
         $entities = $em->getRepository('LocaluriUserBundle:User')->findAll();
 
-        return $this->render('LocaluriUserBundle:User:Admin/index.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -62,7 +62,7 @@ class UserController extends Controller
         $logger = $this->get('my_log');
         $logger->doLog('show', null, $this->getUser(), 'User', 'id: '.$id);
 
-        return $this->render('LocaluriUserBundle:User:Admin/show.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -77,7 +77,7 @@ class UserController extends Controller
         $entity = new User();
         $form   = $this->createForm($this->get('user_type'), $entity);
 
-        return $this->render('LocaluriUserBundle:User:Admin/new.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -102,7 +102,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('lcl_user_admin_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('LocaluriUserBundle:User:Admin/new.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -126,7 +126,7 @@ class UserController extends Controller
         $editForm = $this->createForm($this->get('user_type'), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('LocaluriUserBundle:User:Admin/edit.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -160,7 +160,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('lcl_user_admin_edit', array('id' => $id)));
         }
 
-        return $this->render('LocaluriUserBundle:User:Admin/edit.html.twig', array(
+        return $this->render('LocaluriUserBundle:User:backend/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

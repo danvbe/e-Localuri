@@ -1,0 +1,14 @@
+{% extends '::frontend.html.twig' %}
+
+{% block body %}
+    {% block fos_user_content %}{% endblock %}
+{% endblock %}
+{% block sidebar %}
+    <p><a href="{{ path('fos_user_profile_edit') }}"> Modifica detalii cont </a></p>
+	{% if (not app.user.isSiteRegistered ) %}
+		<p><a href="{{ path('fos_user_resetting_request') }}">Seteaza o parola</a></p>
+	{% else %}
+		<p><a href="{{ path('fos_user_change_password') }}"> Schimba parola </a></p>
+	{% endif %}
+    <p><a href="{{ path('fos_user_security_logout') }}">Logout</a></p>
+{% endblock %}

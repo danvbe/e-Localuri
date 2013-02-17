@@ -1,12 +1,7 @@
-localuri_dictionary:
-    resource: "@LocaluriDictionaryBundle/Resources/config/routing.yml"
-    prefix:   /
+admin_homepage:
+    pattern:  admin/
+    defaults: { _controller: "LocaluriUserBundle:User:index" }
 
-localuri_address:
-    resource: "@LocaluriAddressBundle/Resources/config/routing.yml"
-    prefix:   /
-
-#todo: change this
 homepage:
     pattern:  /
     defaults: { _controller: LocaluriUserBundle:User:myAccount }
@@ -20,6 +15,13 @@ localuri_user:
 
 localuri_log:
     resource: "@LocaluriLogBundle/Resources/config/routing.yml"
+
+localuri_dictionary:
+    resource: "@LocaluriDictionaryBundle/Resources/config/routing.yml"
+
+localuri_address:
+    resource: "@LocaluriAddressBundle/Resources/config/routing.yml"
+
 
 
 #FosUserBundle Routes

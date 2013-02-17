@@ -1,0 +1,15 @@
+{% extends 'LocaluriUserBundle::frontend.html.twig' %}
+
+{% block title %}Contul meu{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Contul Meu</h1>
+    </header>
+    <article>
+        <div class="fos_user_user_show">
+            <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+        </div>
+    </article>
+{% endblock %}

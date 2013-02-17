@@ -40,6 +40,9 @@
                         <li><a href="#">Contact</a></li>
                         {% if app.user %}
                             <li><a href="{{ path('lcl_user_myAccount') }}">Contul meu</a></li>
+	                        {% if attribute(app.user, 'hasRole', {'role':'ROLE_SUPER_ADMIN'}) %}
+	                            <li><a href="{{ path('admin_homepage') }}">ADMIN PANEL</a></li>
+	                        {% endif %}
                         {% else %}
                             <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
                         {% endif %}

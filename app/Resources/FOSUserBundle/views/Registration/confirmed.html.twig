@@ -1,4 +1,4 @@
-{% extends "LocaluriUserBundle::layout.html.twig" %}
+{% extends "LocaluriUserBundle::frontend.html.twig" %}
 
 {% block fos_user_content %}
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
