@@ -45,7 +45,8 @@ class Local
     /**
      * @var The owner of the restaurant
      *
-     * todo: setup the relation to user
+     * @ORM\ManyToOne(targetEntity="Localuri\UserBundle\Entity\User", cascade={"all"}, fetch="EAGER", inversedBy="locals")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $owner;
 
