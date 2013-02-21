@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="lcl_dictionary")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"dictionary" = "Dictionary", "category" = "Category"})
+ * @ORM\DiscriminatorMap({"dictionary" = "Dictionary", "category" = "Category", "specific" = "Specific"})
  */
 class Dictionary
 {
@@ -29,11 +29,11 @@ class Dictionary
      */
     protected $id;
 
-    /** @ORM\Column(name="type_", type="string", length=255, nullable=true) */
+    /**
+     * @ORM\ManyToOne(targetEntity="Dictionary", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="cascade")
+     */
     protected $type;
-
-    /** @ORM\Column(name="key_", type="string", length=255, nullable=false) */
-    protected $key;
 
     /** @ORM\Column(name="value_", type="string", length=255, nullable=false) */
     protected $value;
@@ -47,16 +47,13 @@ class Dictionary
     /** @ORM\Column(name="updated_at", type="datetime", nullable=false) */
     protected $updated_at;
 
-    /** @ORM\Column(name="expired_at", type="datetime", nullable=true) */
-    protected $expired_at;
-
     /** @ORM\PrePersist */
     public function prePersist()
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
-        if(strtolower(get_class($this)) != 'localuri\dictionarybundle\entity\dictionary')
-            $this->type = substr(strtolower(get_class($this)),33);
+        //if(strtolower(get_class($this)) != 'localuri\dictionarybundle\entity\dictionary')
+        //    $this->type = substr(strtolower(get_class($this)),33);
     }
 
     /** @ORM\PreUpdate */
@@ -65,6 +62,9 @@ class Dictionary
         $this->updated_at = new \DateTime();
     }
 
+    public function __toString(){
+        return $this->getValue();
+    }
 
 
     //***************************************************//

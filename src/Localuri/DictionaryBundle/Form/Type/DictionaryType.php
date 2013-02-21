@@ -21,7 +21,6 @@ class DictionaryType extends AbstractType
                 'empty_value' => 'Choose a dictionary type',
                 'required'=>false,
                 ))
-            ->add('key')
             ->add('value')
             ->add('description')
         ;

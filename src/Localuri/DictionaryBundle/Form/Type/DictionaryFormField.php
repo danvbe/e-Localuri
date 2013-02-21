@@ -27,7 +27,8 @@ class DictionaryFormField extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'choices' => $this->dictionary_service->getArrayValues($this->type),
+            'query_builder' => $this->dictionary_service->getQBChoices($this->type),
+            'class'=>'LocaluriDictionaryBundle:Dictionary',
         ));
     }
 
@@ -43,6 +44,6 @@ class DictionaryFormField extends AbstractType
 
     public function getParent()
     {
-        return 'choice';
+        return 'entity';
     }
 }
