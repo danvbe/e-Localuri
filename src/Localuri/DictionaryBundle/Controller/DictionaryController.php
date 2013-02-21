@@ -71,8 +71,18 @@ class DictionaryController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new Dictionary();
+        $entity = new Dictionary();
+        $form   = $this->createForm(new DictionaryType($this->get('dictionary_service')), $entity);
+
+        //we check to see if we have a class definition for this type of dictionary type
+        //if so... we create corresponding entity
+        $form_params = $request->request->get($form->getName());
+        $class_name = 'Localuri\DictionaryBundle\Entity\\'.ucfirst($form_params['type']);
+        if(class_exists(strtolower($class_name)))
+            $entity = new $class_name();
+
         $form = $this->createForm(new DictionaryType($this->get('dictionary_service')), $entity);
+
         $form->bind($request);
 
         if ($form->isValid()) {
