@@ -23,12 +23,12 @@ class DictionaryRepository extends EntityRepository
             ->select('d');
         if(null === $type)
             $q->where('d.type is null')
-                ->andWhere('d.expired_at is null or d.expired_at <= :now')
+                ->andWhere('d.expired_at is null or d.expired_at >= :now')
                 ->orderBy('d.value')
                 ->setParameters(array('now'=> new \DateTime()));
         else
             $q->where('d.type = :type')
-                ->andWhere('d.expired_at is null or d.expired_at <= :now')
+                ->andWhere('d.expired_at is null or d.expired_at >= :now')
                 ->orderBy('d.value')
                 ->setParameters(array('type'=>$type,'now'=> new \DateTime()));
 
