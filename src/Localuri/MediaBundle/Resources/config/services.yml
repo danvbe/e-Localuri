@@ -1,0 +1,7 @@
+parameters:
+#    localuri_media.example.class: Localuri\MediaBundle\Example
+
+services:
+#    localuri_media.example:
+#        class: %localuri_media.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

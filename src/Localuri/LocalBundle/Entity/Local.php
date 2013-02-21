@@ -52,7 +52,8 @@ class Local
     /**
      * @var The image file fo the restaurant
      *
-     * todo: setup the relation to media
+     * @ORM\OneToOne(targetEntity="Localuri\MediaBundle\Entity\Media")
+     * @ORM\JoinColumn(name="image", referencedColumnName="id")
      */
     protected $image;
 

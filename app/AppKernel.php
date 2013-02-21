@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Localuri\AddressBundle\LocaluriAddressBundle(),
             new Localuri\DictionaryBundle\LocaluriDictionaryBundle(),
             new Localuri\LocalBundle\LocaluriLocalBundle(),
+            new Localuri\MediaBundle\LocaluriMediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
