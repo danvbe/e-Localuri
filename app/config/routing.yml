@@ -1,3 +1,7 @@
+localuri_local:
+    resource: "@LocaluriLocalBundle/Resources/config/routing.yml"
+    prefix:   /
+
 admin_homepage:
     pattern:  admin/
     defaults: { _controller: "LocaluriUserBundle:User:index" }
