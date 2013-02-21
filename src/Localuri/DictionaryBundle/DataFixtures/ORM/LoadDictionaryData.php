@@ -42,43 +42,44 @@ class LoadDictionaryData implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         $dictionary = new Dictionary();
-        $dictionary->setKey('category');
+        $dictionary->setValue('Specific');
+        $dictionary->setDescription('Specific');    //this needs to be like the class name
+        $manager->persist($dictionary);
+
+        $dictionary = new Dictionary();
         $dictionary->setValue('Category');
-        $dictionary->setDescription('Values for categories of locals');
+        $dictionary->setDescription('Category');    //this needs to be like the class name
         $manager->persist($dictionary);
 
-        $dictionary = new Category();
-        $dictionary->setKey('cat-1');
-        $dictionary->setValue('Category 1');
-        $dictionary->setDescription('Category 1');
-        $manager->persist($dictionary);
+        $cat = new Category();
+        $cat->setValue('Category 1');
+        $cat->setDescription('Category 1');
+        $cat->setType($dictionary);
+        $manager->persist($cat);
 
-        $dictionary = new Category();
-        $dictionary->setKey('cat-2');
-        $dictionary->setValue('Category 2');
-        $dictionary->setDescription('Category 2');
-        $manager->persist($dictionary);
+        $cat = new Category();
+        $cat->setValue('Category 2');
+        $cat->setDescription('Category 2');
+        $cat->setType($dictionary);
+        $manager->persist($cat);
 
 
         $dictionary = new Dictionary();
-        $dictionary->setKey('genre');
         $dictionary->setValue('Genre');
         $dictionary->setDescription('Values for Genres');
         $manager->persist($dictionary);
 
-        $dictionary = new Dictionary();
-        $dictionary->setType('genre');
-        $dictionary->setKey('m');
-        $dictionary->setValue('Male');
-        $dictionary->setDescription('Male genre');
-        $manager->persist($dictionary);
+        $dict = new Dictionary();
+        $dict->setType($dictionary);
+        $dict->setValue('Male');
+        $dict->setDescription('Male genre');
+        $manager->persist($dict);
 
-        $dictionary = new Dictionary();
-        $dictionary->setType('genre');
-        $dictionary->setKey('f');
-        $dictionary->setValue('Female');
-        $dictionary->setDescription('Female genre');
-        $manager->persist($dictionary);
+        $dict = new Dictionary();
+        $dict->setType($dictionary);
+        $dict->setValue('Female');
+        $dict->setDescription('Female genre');
+        $manager->persist($dict);
 
 
         $manager->flush();

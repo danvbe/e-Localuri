@@ -17,11 +17,11 @@ class DictionaryService
         $this->em = $em;
     }
 
-    public function getArrayValues($type = null){
-        return $this->em->getRepository('LocaluriDictionaryBundle:Dictionary')->getArrayValues($type);
+    public function getQBChoices($type = null){
+        return $this->em->getRepository('LocaluriDictionaryBundle:Dictionary')->getQBChoices($type);
     }
 
-    public function getDictionary($key , $type = null , $date = null){
-        return $this->em->getRepository('LocaluriDictionaryBundle:Dictionary')->getDictionary($key,$type,$date);
+    public function getDictionary($id ){
+        return $this->em->getRepository('LocaluriDictionaryBundle:Dictionary')->getDictionary($id);
     }
 }

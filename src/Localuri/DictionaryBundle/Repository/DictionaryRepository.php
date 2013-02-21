@@ -18,47 +18,30 @@ class DictionaryRepository extends EntityRepository
      * @param null $type
      * @return array
      */
-    public function getArrayValues($type = null){
+    public function getQBChoices($type = null){
         $q = $this->createQueryBuilder('d')
             ->select('d');
         if(null === $type)
-            $q->where('d.type is null')
-                ->andWhere('d.expired_at is null or d.expired_at >= :now')
-                ->orderBy('d.value')
-                ->setParameters(array('now'=> new \DateTime()));
+            $q->where('d.type is null');
         else
             $q->where('d.type = :type')
-                ->andWhere('d.expired_at is null or d.expired_at >= :now')
-                ->orderBy('d.value')
-                ->setParameters(array('type'=>$type,'now'=> new \DateTime()));
+                ->setParameter('type',$type);
 
-        $array = array();
-        foreach($q->getQuery()->execute() as $dict)
-            $array[$dict->getKey()] = $dict->getValue();
+        $q->orderBy('d.value');
 
-        return $array;
+        return $q;
     }
 
     /**
-     * Returns a dictionary record based on $type, $key and the date when it was saved
-     * @param $key
-     * @param null $type
-     * @param null $date
+     * Returns a dictionary record based on $id
+     * @param $id
      * @return mixed
      */
-    public function getDictionary($key , $type = null , $date = null){
+    public function getDictionary($id){
         $q = $this->createQueryBuilder('d')
-            ->select('d');
-        if($type)
-            $q->where('d.type = :$type')
-                ->setParameter('type',$type);
-        else $q->where('d.type is null');
-
-        if($date)
-            $q->andWhere('d.expired_at > :date or d.expired_at is null')
-                ->setParameter('date',$date);
-
-            $q->orderBy('d.expired_at');
+            ->select('d')
+            ->where('d.id = :id')
+            ->setParameter('id',$id);
 
         return $q->fetchOne();
     }

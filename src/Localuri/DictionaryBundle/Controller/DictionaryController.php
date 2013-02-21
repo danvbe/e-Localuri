@@ -77,9 +77,13 @@ class DictionaryController extends Controller
         //we check to see if we have a class definition for this type of dictionary type
         //if so... we create corresponding entity
         $form_params = $request->request->get($form->getName());
-        $class_name = 'Localuri\DictionaryBundle\Entity\\'.ucfirst($form_params['type']);
-        if(class_exists(strtolower($class_name)))
-            $entity = new $class_name();
+        $em = $this->getDoctrine()->getManager();
+
+        if ($form_params['type'] && $en = $em->getRepository('LocaluriDictionaryBundle:Dictionary')->find($form_params['type'])){
+            $class_name = 'Localuri\DictionaryBundle\Entity\\'.$en->getDescription();
+            if(class_exists(strtolower($class_name)))
+                $entity = new $class_name();
+        }
 
         $form = $this->createForm(new DictionaryType($this->get('dictionary_service')), $entity);
 

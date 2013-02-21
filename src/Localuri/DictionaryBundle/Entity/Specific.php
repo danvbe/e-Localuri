@@ -14,9 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  */
-class Category extends Dictionary
+class Specific extends Dictionary
 {
-
     /**
      * @ORM\ManyToMany(targetEntity="Localuri\LocalBundle\Entity\Local", mappedBy="categories")
      */

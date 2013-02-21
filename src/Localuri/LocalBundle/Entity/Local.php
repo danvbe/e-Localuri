@@ -68,14 +68,22 @@ class Local
     /**
      * @var Categories of local
      *
-     * todo: setup the m:n relation with dictionary (type=category)
+     * @ORM\ManyToMany(targetEntity="Localuri\DictionaryBundle\Entity\Category", inversedBy="locals")
+     * @ORM\JoinTable(name="local_category",
+     *      joinColumns={@ORM\JoinColumn(name="local_id", referencedColumnName="id", onDelete="cascade")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="cascade")}
+     *      )
      */
     protected $categories;
 
     /**
      * @var The specifics of the local
      *
-     * todo: setup the m:n relation with dictionary (type=specifics)
+     * @ORM\ManyToMany(targetEntity="Localuri\DictionaryBundle\Entity\Specific", inversedBy="locals")
+     * @ORM\JoinTable(name="local_specific",
+     *      joinColumns={@ORM\JoinColumn(name="local_id", referencedColumnName="id", onDelete="cascade")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="specific_id", referencedColumnName="id", onDelete="cascade")}
+     *      )
      */
     protected $specifics;
 
