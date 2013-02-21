@@ -16,6 +16,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Localuri\DictionaryBundle\Repository\DictionaryRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="lcl_dictionary")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"dictionary" = "Dictionary", "category" = "Category"})
  */
 class Dictionary
 {
@@ -52,6 +55,8 @@ class Dictionary
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
+        if(strtolower(get_class($this)) != 'localuri\dictionarybundle\entity\dictionary')
+            $this->type = substr(strtolower(get_class($this)),33);
     }
 
     /** @ORM\PreUpdate */
