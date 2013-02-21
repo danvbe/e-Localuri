@@ -58,7 +58,7 @@ class User extends BaseUser
     /*
      * @ORM\OneToMany(targetEntity="Local", mappedBy="owner", cascade={"remove"})
      */
-//    protected $locals;
+    protected $locals;
 
     /*
      * @ORM\OneToMany(targetEntity="UserTelephone", mappedBy="user", cascade={"remove"})
